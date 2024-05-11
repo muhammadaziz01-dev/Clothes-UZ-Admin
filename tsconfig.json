@@ -13,6 +13,7 @@
             "@enums": ["./src/types/enums"],
 
             "@utils": ["./src/utils"],
+            "@coocse": ["./src/utils/cocies.ts"],
             "@hooks": ["./src/hooks"],
 
             "@components": ["./src/components"],

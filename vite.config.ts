@@ -12,6 +12,9 @@ export default defineConfig({
       { find: '@pages', replacement: '/src/pages' },
       { find: '@assets', replacement: '/src/assets' },
       { find: '@router', replacement: '/src/router' },
+
+      { find: '@coocse', replacement: '/src/utils/cocies.ts' },
+
     ]
   }
 })

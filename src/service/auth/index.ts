@@ -1,4 +1,4 @@
-import { request } from "../config";
+import  request  from "../config";
 import { Request } from "@interface";
 
 export const auth:Request={

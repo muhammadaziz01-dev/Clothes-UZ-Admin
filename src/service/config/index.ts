@@ -1,8 +1,18 @@
-import axios  from 'axios';
-import type { AxiosInstance } from 'axios';
+import axios from "axios";
+import { getCookies } from "@coocse";
 
-export const request : AxiosInstance = axios.create({
-      baseURL: import.meta.env.VITE_BASE_URL,
-      timeout: 48000,
+const request = axios.create({
+    baseURL: import.meta.env.VITE_BASE_URL
 })
+
+
+request.interceptors.request.use((config) => {
+    const token = getCookies("token")
+    if (token) {
+        config.headers["Authorization"] = token
+    }
+    return config
+})
+
+export default request
 
