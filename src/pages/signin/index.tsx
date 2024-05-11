@@ -44,7 +44,7 @@ const index = () => {
     try{
         const respons = await auth.signin(values);
         console.log(respons);
-        if(respons.status ===201){
+        if(respons.status ===200){
             setCookies("token",respons.data.access_token );
             toast.success("success full");
             setTimeout(()=>{navigate("/home");},1000)
@@ -59,7 +59,7 @@ const index = () => {
     
      
     <div className="login-wrp w-full h-[100vh] flex items-center justify-center">
-        <div className=" py-10 px-20 rounded-xl shadow-2xl bg-[rgba(250,250,250,0.85)]">
+        <div className=" py-10 px-20 rounded-tl-[30px] rounded-br-3xl shadow-[30px] bg-[rgba(250,250,250,0.35)]">
           <h1 className="text-center mb-5 text-[56px] font-bold">
             Log in
           </h1>

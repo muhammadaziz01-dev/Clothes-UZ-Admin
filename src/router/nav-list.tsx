@@ -1,7 +1,6 @@
-
-import DryCleaningIcon from '@mui/icons-material/DryCleaning';
+import ProductionQuantityLimitsIcon from '@mui/icons-material/ProductionQuantityLimits';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
-import VolunteerActivismIcon from '@mui/icons-material/VolunteerActivism';
+import CategoryIcon from '@mui/icons-material/Category';
 
 interface navListInterface {
     path: string,
@@ -14,12 +13,12 @@ const navList:navListInterface[] = [
     {
       path:"/home"  ,
       title:"Category",
-      icon: <VolunteerActivismIcon />,
+      icon: <CategoryIcon />,
     },
     {
         path:"/home/products"  ,
         title:"Products",
-        icon: <DryCleaningIcon />,
+        icon: <ProductionQuantityLimitsIcon />,
     },
     {
         path:"/home/users"  ,
