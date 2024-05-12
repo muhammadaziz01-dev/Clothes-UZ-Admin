@@ -10,6 +10,7 @@
 
             "@types": ["./src/types"],
             "@interface": ["./src/types/interface"],
+            "@globol-interface": ["./src/types/globol-interface"],
             "@enums": ["./src/types/enums"],
 
             "@utils": ["./src/utils"],
@@ -18,14 +19,20 @@
 
             "@components": ["./src/components"],
             "@containers": ["./src/components/containers"],
+            "@modals": ["./src/components/modals"],
             "@ui": ["./src/components/ui"],
             "@sections": ["./src/components/sections"],
 
             "@layut": ["./src/layout"],
             "@pages": ["./src/pages"],
             "@router": ["./src/router"],
+
+
             "@services": ["./src/services"],
             "@context": ["./src/context"],
+            "@category": ["./src/service/category"],
+
+            "@store-categors": ["./src/store/categors"],
 
             
         },

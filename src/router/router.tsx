@@ -19,7 +19,7 @@ const index = ()=>{
             <Route path="/home/*" element={<HomeLayout />} >
                 <Route index element={<Category />} />
                 <Route path="products" element={<Products />} />
-                <Route path="users" element={<Users />} />
+                <Route path="workers" element={<Users />} />
                 <Route path="*" element={<Arror />} />
             </Route>
             <Route path="*" element={<Arror />} />

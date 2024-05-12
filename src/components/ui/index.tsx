@@ -1,3 +1,4 @@
-import AccountMenu from "./menu"
+import AccountMenu from "./menu";
+import Table from "./table";
 
-export { AccountMenu}
+export { AccountMenu , Table }

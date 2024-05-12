@@ -46,7 +46,7 @@ const index = () => {
         console.log(respons);
         if(respons.status ===200){
             setCookies("token",respons.data.access_token );
-            toast.success("success full");
+            toast.success("successfully logged in");
             setTimeout(()=>{navigate("/home");},1000)
 
         }
@@ -85,7 +85,7 @@ const index = () => {
 
               <p
                 onClick={() => {
-                  alert("battar bo'lin tabasum :) ")
+                  alert("therefore, it should not be forgotten : ) ")
                   localStorage.clear();
                 }}
                 className="text-[20px] text-sky-500 ml-[70%] hover:text-sky-700 duration-200 cursor-pointer"

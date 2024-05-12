@@ -12,9 +12,15 @@ export default defineConfig({
       { find: '@pages', replacement: '/src/pages' },
       { find: '@assets', replacement: '/src/assets' },
       { find: '@router', replacement: '/src/router' },
+      { find: '@modals', replacement: '/src/components/modals' },
+
 
       { find: '@coocse', replacement: '/src/utils/cocies.ts' },
+      { find: '@globol-interface', replacement: '/src/types/globol-interface' },
 
+      { find: '@category', replacement: '/src/service/category' },
+
+      { find: '@store-categors', replacement: '/src/store/categors'},
     ]
   }
 })

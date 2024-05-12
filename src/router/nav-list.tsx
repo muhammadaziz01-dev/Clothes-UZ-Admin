@@ -21,8 +21,8 @@ const navList:navListInterface[] = [
         icon: <ProductionQuantityLimitsIcon />,
     },
     {
-        path:"/home/users"  ,
-        title:"Users",
+        path:"/home/workers"  ,
+        title:"Workers",
         icon: <PeopleAltIcon />,
     },
 ]
