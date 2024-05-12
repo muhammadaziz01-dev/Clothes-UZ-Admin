@@ -19,8 +19,11 @@ export default defineConfig({
       { find: '@globol-interface', replacement: '/src/types/globol-interface' },
 
       { find: '@category', replacement: '/src/service/category' },
+      { find: '@worker', replacement: '/src/service/worker' },
+
 
       { find: '@store-categors', replacement: '/src/store/categors'},
+      { find: '@store-worker', replacement: '/src/store/worker'},
     ]
   }
 })

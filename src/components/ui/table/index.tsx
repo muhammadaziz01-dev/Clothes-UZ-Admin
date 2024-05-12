@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 
 import {Props} from "@globol-interface";
-import {CategorModalEdit} from "@modals";
+import {CategorModalEdit ,WorkerModalEdit} from "@modals";
 // import {category} from "@category"
 // import{ ModalServicesEdit} from '@ui';
 
@@ -64,6 +64,10 @@ function index({ heders, body , skelatonLoader , deletIdData  }:Props) {
                             heder.value == "action" ? <div className="flex items-center gap-2">
                                 <button className=' text-gray-500' onClick={()=>deletIdData(body?.category_id)}><DeleteIcon/></button>
                                 <CategorModalEdit  data={body}  />
+                            </div>
+                            :heder.value == "action1" ? <div className="flex items-center gap-2">
+                                <button className=' text-gray-500' onClick={()=>deletIdData(body?.id)}><DeleteIcon/></button>
+                                <WorkerModalEdit  data={body}  />
                             </div>
                             : heder.value == "id" ? <input type="checkbox" onChange={()=>{}} />
                             : heder.value == "t/r" ? <p>{index + 1}</p>

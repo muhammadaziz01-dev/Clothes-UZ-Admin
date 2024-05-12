@@ -15,10 +15,10 @@ import "./style.scss"
 function index() {
   const [countPage , ] = useState(1)
   const [countLimit , ] = useState(10)
-  const {isLoader , data , getData , deleteData , totlCount} = useCategoryStore()
+  const {isLoader , data , getData , deleteData } = useCategoryStore()
   
-  const allCount = totlCount/ countLimit
-  console.log(allCount);
+  // const allCount = totlCount/ countLimit
+  // console.log(allCount);
   
 
 
@@ -71,9 +71,9 @@ function index() {
 
     <Table heders={theder} body={data} skelatonLoader={isLoader} deletIdData={deleteData}/>
     <div className="flex items-center justify-end gap-3">
-      <button className="py-1 px-1 border rounded-lg hover:shadow-md duration-200 cursor-pointer "><ArrowLeftIcon/></button>
+      <button className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm  duration-200 cursor-pointer "><ArrowLeftIcon/></button>
       <span className="text-[20px] text-center">1</span>
-      <button className="py-1 px-1 border rounded-lg hover:shadow-md duration-200 cursor-pointer "><ArrowRightIcon/></button>
+      <button className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm  duration-200 cursor-pointer "><ArrowRightIcon/></button>
     </div>
   </>
 }

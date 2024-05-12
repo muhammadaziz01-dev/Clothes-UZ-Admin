@@ -4,6 +4,6 @@ import Arror from "./error";
 import Home from "./home";
 import Category from "./category";
 import Products from "./products";
-import Users from "./users";
+import Users from "./workers";
 
 export { SignIn, SignUP, Arror, Home , Category, Products ,Users};

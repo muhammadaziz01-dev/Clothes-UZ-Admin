@@ -52,13 +52,6 @@ export default function ModalServicesEdit({ data }: any) {
     }else{
       toast.error("something went wrong") 
     }
-    // let userId = localStorage.getItem("user-id");
-    // const paylod: postData = { ...value, id: data.id, owner_id: userId };
-
-    // const status = await updateData(paylod);
-    // if (status === 200) {
-    //   handleClose();
-    // }
   };
 
   //----------------------------------------------------------------

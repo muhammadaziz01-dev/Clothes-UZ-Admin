@@ -31,8 +31,11 @@
             "@services": ["./src/services"],
             "@context": ["./src/context"],
             "@category": ["./src/service/category"],
+            "@worker": ["./src/service/worker"],
+
 
             "@store-categors": ["./src/store/categors"],
+            "@store-worker": ["./src/store/worker"],
 
             
         },
