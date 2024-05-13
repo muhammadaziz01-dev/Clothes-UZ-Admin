@@ -13,27 +13,18 @@ import {CategorMadalAdd} from "@modals"
 import "./style.scss"
 
 function index() {
-  const [countPage , ] = useState(1)
-  const [countLimit , ] = useState(10)
-  const {isLoader , data , getData , deleteData } = useCategoryStore()
+  const [countPage , setCountPage ] = useState(1)
+  const [countLimit ,] = useState(5)
+  const {isLoader , data , getData , deleteData ,totlCount } = useCategoryStore()
   
-  // const allCount = totlCount/ countLimit
+  const allCount = Math.ceil(totlCount/ countLimit)
   // console.log(allCount);
   
 
 
-  // const countPageDicrement = ()=>{
-
-  // }
-
-  // const countPageIncrement = ()=>{
-     
-  // }
-
-
   useEffect(()=>{
     getData({page:countPage, limit:countLimit})
-  },[])
+  },[countPage])
 
  
   const theder = [
@@ -55,7 +46,7 @@ function index() {
            sx={{p:"2px 4px", width:400 , alignItems: "center" , display: "flex"}}>
             <InputBase
              sx={{ml:1 , flex :1}}
-             placeholder="Qidiruv"
+             placeholder="Search"
              inputProps={{"aria-label":"serch google maps"}}/>
             <IconButton type="button" sx={{p: "10px"}} aria-label="search">
                 <SearchIcon/>
@@ -71,9 +62,9 @@ function index() {
 
     <Table heders={theder} body={data} skelatonLoader={isLoader} deletIdData={deleteData}/>
     <div className="flex items-center justify-end gap-3">
-      <button className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm  duration-200 cursor-pointer "><ArrowLeftIcon/></button>
-      <span className="text-[20px] text-center">1</span>
-      <button className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm  duration-200 cursor-pointer "><ArrowRightIcon/></button>
+      <button onClick={()=>{setCountPage(countPage - 1)}} disabled={countPage == 1} className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm  duration-200 cursor-pointer "><ArrowLeftIcon/></button>
+      <span className="text-[20px] text-center">{countPage}</span>
+      <button onClick={()=>{setCountPage(countPage + 1)}} disabled={countPage == allCount}  className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm  duration-200 cursor-pointer "><ArrowRightIcon/></button>
     </div>
   </>
 }

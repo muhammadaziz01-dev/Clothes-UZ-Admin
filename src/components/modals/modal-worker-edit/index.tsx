@@ -5,6 +5,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import * as Yup from "yup";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, TextField } from "@mui/material";
+import { useMask } from "@react-input/mask";
 
 import useWorkerStore from "@store-worker";
 
@@ -22,7 +23,7 @@ const style = {
 
 export default function ModalServicesEdit({ data }: any) {
   const { updateData } = useWorkerStore();
-
+  const inputRef = useMask({mask: "+998 (93) ___-__-__",replacement: { _: /\d/ },});
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -47,7 +48,7 @@ export default function ModalServicesEdit({ data }: any) {
     gender: Yup.string().required("Gender is required"),
     last_name: Yup.string().required("Last Name is required"),
     password: Yup.string().required("Password is required"),
-    phone_number: Yup.string().required("Phone Number is required"),
+    phone_number: Yup.string().min(19, "Phone invalit ").required("Phone is required"),
     access_token: Yup.string().required("Access Token is required"),
     age: Yup.number().required("Age is required"),
     id: Yup.string().required("ID is required"),
@@ -68,7 +69,9 @@ export default function ModalServicesEdit({ data }: any) {
   };
 
   const handleSubmit = async (values: InitialValues) => {
-    const updatedData = { ...data, ...values };
+    const phone = values.phone_number.replace(/\D/g, "");
+    const newFormData = { ...values, phone_number: phone };
+    const updatedData = { ...data, ...newFormData };
     const status = await updateData(updatedData);
     if (status === 200) {
       handleClose();
@@ -132,6 +135,8 @@ export default function ModalServicesEdit({ data }: any) {
               <Field
                 as={TextField}
                 label="Phone Number"
+                type="tel"
+                inputRef={inputRef}
                 name="phone_number"
                 className="w-full mb-3"
               />
