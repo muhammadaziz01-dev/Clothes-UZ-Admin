@@ -69,6 +69,10 @@ function index({ heders, body , skelatonLoader , deletIdData  }:Props) {
                                 <button className=' text-gray-500' onClick={()=>deletIdData(body?.id)}><DeleteIcon/></button>
                                 <WorkerModalEdit  data={body}  />
                             </div>
+                            :heder.value == "action3" ? <div className="flex items-center gap-2">
+                            <button className=' text-gray-500' onClick={()=>deletIdData(body?.product_id)}><DeleteIcon/></button>
+                            {/* <WorkerModalEdit  data={body}  /> */}
+                            </div>
                             : heder.value == "id" ? <input type="checkbox" onChange={()=>{}} />
                             : heder.value == "t/r" ? <p>{index + 1}</p>
                             : (body[heder.value])

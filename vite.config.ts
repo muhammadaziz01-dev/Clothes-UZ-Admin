@@ -20,10 +20,14 @@ export default defineConfig({
 
       { find: '@category', replacement: '/src/service/category' },
       { find: '@worker', replacement: '/src/service/worker' },
+      { find: '@product', replacement: '/src/service/product' },
+
 
 
       { find: '@store-categors', replacement: '/src/store/categors'},
       { find: '@store-worker', replacement: '/src/store/worker'},
+      { find: '@store-product', replacement: '/src/store/products'},
+
     ]
   }
 })

@@ -49,10 +49,8 @@ export default function ModalServicesEdit({ data }: any) {
     last_name: Yup.string().required("Last Name is required"),
     password: Yup.string().required("Password is required"),
     phone_number: Yup.string().min(19, "Phone invalit ").required("Phone is required"),
-    access_token: Yup.string().required("Access Token is required"),
     age: Yup.number().required("Age is required"),
     id: Yup.string().required("ID is required"),
-    refresh_token: Yup.string().required("Refresh Token is required"),
   });
 
   const initialValues: InitialValues = {
@@ -62,10 +60,8 @@ export default function ModalServicesEdit({ data }: any) {
     last_name: data?.last_name || "",
     password: "",
     phone_number: data?.phone_number || "",
-    access_token: data?.access_token || "",
     age: data?.age || 0,
     id: data?.id || "",
-    refresh_token: data?.refresh_token || "",
   };
 
   const handleSubmit = async (values: InitialValues) => {
@@ -132,6 +128,9 @@ export default function ModalServicesEdit({ data }: any) {
               />
               <ErrorMessage name="gender" component="p" className="mb-3 text-red-500 text-center" />
 
+              
+              </div>
+              <div className="flex items-center flex-col gap-3 max-w-[400px] w-full">
               <Field
                 as={TextField}
                 label="Phone Number"
@@ -141,8 +140,7 @@ export default function ModalServicesEdit({ data }: any) {
                 className="w-full mb-3"
               />
               <ErrorMessage name="phone_number" component="p" className="mb-3 text-red-500 text-center" />
-              </div>
-              <div className="flex items-center flex-col gap-3 max-w-[400px] w-full">
+
               <Field
                 as={TextField}
                 label="Password"
@@ -152,14 +150,7 @@ export default function ModalServicesEdit({ data }: any) {
               />
               <ErrorMessage name="password" component="p" className="mb-3 text-red-500 text-center" />
 
-              <Field
-                as={TextField}
-                label="Access Token"
-                name="access_token"
-                className="w-full mb-3"
-              />
-              <ErrorMessage name="access_token" component="p" className="mb-3 text-red-500 text-center" />
-
+              
               <Field
                 as={TextField}
                 label="Age"
@@ -177,14 +168,7 @@ export default function ModalServicesEdit({ data }: any) {
               />
               <ErrorMessage name="id" component="p" className="mb-3 text-red-500 text-center" />
 
-              <Field
-                as={TextField}
-                label="Refresh Token"
-                name="refresh_token"
-                className="w-full mb-3"
-              />
-              <ErrorMessage name="refresh_token" component="p" className="mb-3 text-red-500 text-center" />
-
+              
               </div>
               </div>
               <Button

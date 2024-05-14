@@ -2,6 +2,7 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import * as Yup from "yup";
+import { useMask } from "@react-input/mask";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import useWorkerStore from "@store-worker";
@@ -21,20 +22,24 @@ const style = {
 
 export default function BasicModal() {
   const { postData } = useWorkerStore();
-
+  const inputRef = useMask({mask: "+998 (93) ___-__-__",replacement: { _: /\d/ },});
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const initialValues:PostData = {
+    age: "",
     email: "",
     first_name: "",
     gender: "",
     last_name: "",
+    phone_number: "",
     password: ""
   };
 
   const validationSchema = Yup.object().shape({
+    age: Yup.string().required("Age is required"),
+    phone_number: Yup.string().required("Phone Number is required"),
     email: Yup.string().email("Invalid email").required("Email is required"),
     first_name: Yup.string().required("First Name is required"),
     gender: Yup.string().required("Gender is required"),
@@ -43,8 +48,10 @@ export default function BasicModal() {
   });
 
   const handleSubmit = async (values:PostData) => {
+    const phone = values.phone_number.replace(/\D/g, "");
+    const newFormData = { ...values, phone_number: phone };
     // console.log(values);
-    const status = await postData(values);
+    const status = await postData(newFormData);
     if (status === 201) {
       handleClose();
     } else {
@@ -81,7 +88,15 @@ export default function BasicModal() {
                 className="w-full mb-3"
               />
               <ErrorMessage name="email" component="p" className="mb-3 text-red-500 text-center" />
-
+              <Field
+                as={TextField}
+                label="Age"
+                name="age"
+                type="number"
+                className="w-full mb-3"
+              />
+              <ErrorMessage name="age" component="p" className="mb-3 text-red-500 text-center" />
+             
               <Field
                 as={TextField}
                 label="First Name"
@@ -120,6 +135,17 @@ export default function BasicModal() {
               />
               <ErrorMessage name="password" component="p" className="mb-3 text-red-500 text-center" />
 
+
+              <Field
+                as={TextField}
+                label="Telafono"
+                type="tel"
+                inputRef={inputRef}
+                name="phone_number"
+                className="w-full mb-3"
+              />
+              <ErrorMessage name="phone_number" component="p" className="mb-3 text-red-500 text-center" />
+              
               <Button
                 variant="contained"
                 type="submit"

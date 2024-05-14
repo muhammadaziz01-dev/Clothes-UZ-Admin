@@ -1,20 +1,21 @@
+
 import request from "../config"
 
 // ----------------> Instance Worker <-------------------------------------
 export interface PostData{
+    age: string | number,
     email: string,
     first_name: string,
     gender: string,
     last_name: string,
     password: string,
+    phone_number: string,
     id?: string,
 }
 
 export interface UpdateData extends PostData{
-    access_token: string,
-    age: number,
-    phone_number: string,
-    refresh_token: string
+    access_token?: string,
+    refresh_token?: string
 }
 
 interface getParams{
