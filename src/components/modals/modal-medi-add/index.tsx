@@ -25,8 +25,6 @@ export default function BasicModal({ dataId }: any) {
   const handleClose = () => setOpen(false);
 
   /// my code start <-----------------------------
- 
-
   const postMedia = async (data: any) => {
     try {
       const token = getCookies("token");
