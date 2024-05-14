@@ -64,6 +64,18 @@ const useProductStore = create <StoreProduct> ((set)=>({
             console.log(error)
             toast.error("Error : " + error?.message);
         }
+    },
+    getIdProduct: async(id)=>{
+        try{
+           const respons = await product.getId(id)
+        //    console.log(respons)
+           if(respons.status === 200){
+               return respons.data;
+           }
+        }catch(error:any){
+            console.log(error)
+            toast.error("Error : " + error?.message);
+        }
     }
 
 }))
