@@ -1,12 +1,12 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import * as Yup from "yup";
 import { useMask } from "@react-input/mask";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, TextField, RadioGroup, Radio, FormControlLabel } from "@mui/material";
 import useWorkerStore from "@store-worker";
 import { PostData } from "@worker"
+import { validationSchemaWorkerAdd } from "@validations";
 
 const style = {
   position: "absolute" as "absolute",
@@ -37,16 +37,6 @@ export default function BasicModal() {
     password: ""
   };
 
-  const validationSchema = Yup.object().shape({
-    age: Yup.string().required("Age is required"),
-    phone_number: Yup.string().required("Phone Number is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    first_name: Yup.string().required("First Name is required"),
-    gender: Yup.string().required("Gender is required"),
-    last_name: Yup.string().required("Last Name is required"),
-    password: Yup.string().required("Password is required")
-  });
-
   const handleSubmit = async (values:PostData) => {
     const phone = values.phone_number.replace(/\D/g, "");
     const newFormData = { ...values, phone_number: phone };
@@ -76,7 +66,7 @@ export default function BasicModal() {
         <Box sx={style}>
           <Formik
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            validationSchema={validationSchemaWorkerAdd}
             onSubmit={handleSubmit}
           >
             <Form className="max-w-[600px] w-full flex flex-col gap-[12px]">

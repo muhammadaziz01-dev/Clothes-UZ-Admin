@@ -12,6 +12,7 @@ export default defineConfig({
       { find: '@pages', replacement: '/src/pages' },
       { find: '@assets', replacement: '/src/assets' },
       { find: '@router', replacement: '/src/router' },
+      { find: '@validations', replacement: '/src/validations' },
       { find: '@modals', replacement: '/src/components/modals' },
 
 

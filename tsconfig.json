@@ -33,6 +33,8 @@
             "@category": ["./src/service/category"],
             "@worker": ["./src/service/worker"],
             "@product": ["./src/service/product"],
+            "@validations": ["./src/validations"],
+
 
 
 

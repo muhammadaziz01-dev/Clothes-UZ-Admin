@@ -2,11 +2,11 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import EditIcon from "@mui/icons-material/Edit";
-import * as Yup from "yup";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import { Button, TextField } from "@mui/material";
 import { useMask } from "@react-input/mask";
 
+import { validationSchemaWorkerEdit } from "@validations";
 import useWorkerStore from "@store-worker";
 
 const style = {
@@ -42,16 +42,7 @@ export default function ModalServicesEdit({ data }: any) {
     
   }
 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    first_name: Yup.string().required("First Name is required"),
-    gender: Yup.string().required("Gender is required"),
-    last_name: Yup.string().required("Last Name is required"),
-    password: Yup.string().required("Password is required"),
-    phone_number: Yup.string().min(19, "Phone invalit ").required("Phone is required"),
-    age: Yup.number().required("Age is required"),
-    id: Yup.string().required("ID is required"),
-  });
+  
 
   const initialValues: InitialValues = {
     email: data?.email || "",
@@ -88,7 +79,7 @@ export default function ModalServicesEdit({ data }: any) {
         <Box sx={style}>
           <Formik
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            validationSchema={validationSchemaWorkerEdit}
             onSubmit={handleSubmit}
           >
             <Form className="max-w-[1000px] w-full flex flex-col gap-[12px]">

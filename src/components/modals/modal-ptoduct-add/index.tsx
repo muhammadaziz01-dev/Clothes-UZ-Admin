@@ -1,7 +1,6 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import * as Yup from "yup";
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import {
   Button,
@@ -14,6 +13,7 @@ import { useEffect } from "react";
 
 import useProductStore from "@store-product";
 import useCategoryStore from "@store-categors";
+import {validationSchemaProductAdd} from "@validations"
 
 const style = {
   position: "absolute" as "absolute",
@@ -51,21 +51,7 @@ export default function BasicModal() {
 
   };
 
-  const validationSchema = Yup.object().shape({
-    age_max: Yup.number().required("Max Age is required").positive("Age must be a positive number"),
-    age_min: Yup.number().required("Min Age is required").positive("Age must be a positive number"),
-    category_id: Yup.string().required("Category ID is required"),
-    color: Yup.string().required("Color is required"),
-    cost: Yup.number().required("Cost is required").positive("Cost must be a positive number"),
-    count: Yup.number().required("Count is required").positive("Count must be a positive number"),
-    discount: Yup.number().required("Discount is required").positive("Discount must be a positive number"),
-    for_gender: Yup.string().required("For Gender is required"),
-    made_in: Yup.string().required("Made In is required"),
-    product_name: Yup.string().required("Product Name is required"),
-    size: Yup.number().required("Size is required").positive("Size must be a positive number"),
-    description: Yup.string().required("Description is required"),
-    
-  });
+  
 
   useEffect(() => {
     getData({ page: 1, limit: 100 });
@@ -101,7 +87,7 @@ export default function BasicModal() {
         <Box sx={style}>
           <Formik
             initialValues={initialValues}
-            validationSchema={validationSchema}
+            validationSchema={validationSchemaProductAdd}
             onSubmit={handleSubmit}
           >
             <Form className="max-w-[700px] w-full flex flex-col gap-[12px]">
