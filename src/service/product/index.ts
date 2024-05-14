@@ -23,6 +23,7 @@ export interface UpdateData extends PostData{
 interface getParams{
     page:number;
     limit:number;
+    name?:string;
 }
 
 

@@ -11,15 +11,20 @@ import {
   Paper,
   Skeleton,
 } from "@mui/material";
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import { useNavigate } from 'react-router-dom';
 
 import {Props} from "@globol-interface";
-import {CategorModalEdit ,WorkerModalEdit} from "@modals";
+import {CategorModalEdit ,WorkerModalEdit , MediaModaladd} from "@modals";
 // import {category} from "@category"
 // import{ ModalServicesEdit} from '@ui';
 
 
 
 function index({ heders, body , skelatonLoader , deletIdData  }:Props) {
+
+  const navigate = useNavigate();
+
 
   return (
     <>
@@ -71,7 +76,8 @@ function index({ heders, body , skelatonLoader , deletIdData  }:Props) {
                             </div>
                             :heder.value == "action3" ? <div className="flex items-center gap-2">
                             <button className=' text-gray-500' onClick={()=>deletIdData(body?.product_id)}><DeleteIcon/></button>
-                            {/* <WorkerModalEdit  data={body}  /> */}
+                            <MediaModaladd  dataId={body?.product_id}  />
+                            <button onClick={()=>{navigate(`/home/products/${body?.product_id}`)}}  className=' text-gray-500'><VisibilityIcon/></button>
                             </div>
                             : heder.value == "id" ? <input type="checkbox" onChange={()=>{}} />
                             : heder.value == "t/r" ? <p>{index + 1}</p>

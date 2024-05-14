@@ -20,7 +20,7 @@ function index() {
   // console.log(allCount);
 
   useEffect(() => {
-    getProduct({ page: countPage, limit: countLimit });
+    getProduct({ page: countPage, limit: countLimit , name:"" });
   }, [countPage]);
 
 
