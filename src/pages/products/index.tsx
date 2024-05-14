@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { IconButton, InputBase, Paper } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
+// import { IconButton, InputBase, Paper } from "@mui/material";
+// import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer } from "react-toastify";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -13,7 +13,7 @@ import "./style.scss";
 function index() {
 
   const [countPage , setCountPage] = useState(1);
-  const [countLimit] = useState(10);
+  const [countLimit] = useState(8);
   const {  data, isLoader, getProduct, deleteProduct , totlCount} = useProductStore();
 
   const allCount = Math.ceil(totlCount/ countLimit)
@@ -38,7 +38,7 @@ function index() {
      <ToastContainer/>
       <div className="flex items-center justify-between py-3">
         <div className="w-96">
-          <Paper
+          {/* <Paper
             component="form"
             sx={{
               p: "2px 4px",
@@ -55,7 +55,7 @@ function index() {
             <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
-          </Paper>
+          </Paper> */}
         </div>
         <div className="flex items-center gap-2">
           <ProductModalAdd/>

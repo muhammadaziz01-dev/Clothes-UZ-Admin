@@ -7,11 +7,13 @@ function index() {
   const navigate = useNavigate();
 
   const navigetBtn = () => {
-    if (localStorage.getItem("token")) {
-      navigate("/main");
-    }else{
-        navigate("/signin"); 
-    }
+
+    navigate("/home"); 
+    // if (localStorage.getItem("token")) {
+    //   navigate("/main");
+    // }else{
+    //     navigate("/signin"); 
+    // }
   };
 
   

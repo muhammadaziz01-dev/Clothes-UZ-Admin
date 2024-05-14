@@ -113,7 +113,11 @@ export default function ResponsiveDrawer(props: Props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography  noWrap component="div" className='bg-[#F9F9F9] flex items-center justify-end w-full h-full'>
+          <Typography  noWrap component="div" className='bg-[#F9F9F9] flex items-center justify-between w-full h-full'>
+          
+          <div>
+            <h1 className='text-[20px] text-slate-600'>{pathname == "/home/workers" ? "Worker" : pathname == "/home/products" ? "Products" :pathname == "/home" ? "Category"  : "Product" }</h1>
+          </div>
           <div className='flex items-center gap-5'>
             <AccountMenu/>
           </div>

@@ -4,10 +4,10 @@ import { ToastContainer, toast } from "react-toastify";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useState } from "react";
-import * as Yup from "yup";
 
 import {auth} from "../../service/auth"
 import {setCookies} from "@coocse"
+import {schemaLogin} from "@validations"
 
 
 
@@ -29,15 +29,7 @@ const index = () => {
     };
 
 
-     // Validation scheme Login  for the input field type ------------------------------
-   const schemaLogin = Yup.object().shape({
-    email: Yup.string().email("Email invalit ").required("Email is required"),
-    password: Yup.string().matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/,
-        "Password must contain at least one uppercase, one lowercase letter, one number, one special character, and be between 8 to 20 characters long"
-      ).required("Password is required")
-  });
-  //==========================================
+   
 
 
   const  handelSubmit =async(values :initialValues)=>{

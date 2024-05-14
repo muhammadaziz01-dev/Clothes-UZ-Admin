@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { IconButton, InputBase, Paper } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search"
+// import { IconButton, InputBase, Paper } from "@mui/material";
+// import SearchIcon from "@mui/icons-material/Search"
 import { ToastContainer } from "react-toastify";
 import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
 import ArrowRightIcon from '@mui/icons-material/ArrowRight';
@@ -41,7 +41,7 @@ function index() {
     <ToastContainer/>
     <div className="flex items-center justify-between py-3">
         <div className="w-96">
-           <Paper 
+           {/* <Paper 
            component="form"
            sx={{p:"2px 4px", width:400 , alignItems: "center" , display: "flex"}}>
             <InputBase
@@ -52,7 +52,7 @@ function index() {
                 <SearchIcon/>
             </IconButton>
 
-           </Paper>
+           </Paper> */}
         </div>
         <div className="flex items-center gap-2">
           
