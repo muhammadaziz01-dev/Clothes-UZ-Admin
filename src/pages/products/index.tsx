@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-// import { IconButton, InputBase, Paper } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
+import { IconButton, InputBase, Paper } from "@mui/material";
+import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer } from "react-toastify";
 import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
 import ArrowRightIcon from "@mui/icons-material/ArrowRight";
@@ -15,13 +15,14 @@ function index() {
   const [countPage , setCountPage] = useState(1);
   const [countLimit] = useState(8);
   const {  data, isLoader, getProduct, deleteProduct , totlCount} = useProductStore();
+  const [change, setChange] = useState("")
 
   const allCount = Math.ceil(totlCount/ countLimit)
   // console.log(allCount);
 
   useEffect(() => {
-    getProduct({ page: countPage, limit: countLimit , name:"" });
-  }, [countPage]);
+    getProduct({ page: countPage, limit: countLimit , name:change });
+  }, [countPage, change]);
 
 
   const theder = [
@@ -38,7 +39,7 @@ function index() {
      <ToastContainer/>
       <div className="flex items-center justify-between py-3">
         <div className="w-96">
-          {/* <Paper
+          <Paper
             component="form"
             sx={{
               p: "2px 4px",
@@ -51,11 +52,12 @@ function index() {
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search"
               inputProps={{ "aria-label": "serch google maps" }}
+              onChange={(e)=>setChange(e.target.value)}
             />
             <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />
             </IconButton>
-          </Paper> */}
+          </Paper>
         </div>
         <div className="flex items-center gap-2">
           <ProductModalAdd/>

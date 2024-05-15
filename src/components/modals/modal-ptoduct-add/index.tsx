@@ -125,7 +125,7 @@ export default function BasicModal() {
                   <Field
                     as="select"
                     name="category_id"
-                    className="w-full mb-3 border py-4 "
+                    className="w-full  border py-5 rounded-md px-1 "
                   >
                     {data.map((item) => (
                       <option key={item?.category_id} value={item?.category_id}>
@@ -160,7 +160,10 @@ export default function BasicModal() {
                     component="p"
                     className="mb-3 text-red-500 text-center"
                   />
-                  <Field
+                  
+                </div>
+                <div className="flex flex-col gap-3">
+                <Field
                     as={TextField}
                     label="Count"
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
@@ -173,8 +176,6 @@ export default function BasicModal() {
                     component="p"
                     className="mb-3 text-red-500 text-center"
                   />
-                </div>
-                <div className="flex flex-col gap-3">
                   <Field
                     as={TextField}
                     label="Discount"
@@ -188,11 +189,25 @@ export default function BasicModal() {
                     component="p"
                     className="mb-3 text-red-500 text-center"
                   />
+                  
+                  <Field
+                    as="select"
+                    name="made_in"
+                    className="w-full border py-5 rounded-md px-1 "
+                  >
+                    {["Uzbekistan" , "China" , "Turkiy"  ].map((item) => (
+                      <option key={item} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </Field>
+
+
                   <Field
                     as={RadioGroup}
                     aria-label="For gender"
                     name="for_gender"
-                    className="flex items-center mb-3"
+                    className="flex items-center py-[10px]"
                   >
                     <div className="flex items-center justify-between">
                       <FormControlLabel
@@ -212,30 +227,7 @@ export default function BasicModal() {
                     component="p"
                     className="mb-3 text-red-500 text-center"
                   />
-                  <Field
-                    as="select"
-                    name="made_in"
-                    className="w-full mb-3 border py-5 "
-                  >
-                    {["Uzbekistan" , "China" , "Turkiy"  ].map((item) => (
-                      <option key={item} value={item}>
-                        {item}
-                      </option>
-                    ))}
-                  </Field>
-                  <Field
-                    as={TextField}
-                    label="Product name"
-                    sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                    type="text"
-                    name="product_name"
-                    className=" w-[100%]  mb-3 outline-none py-0"
-                  />
-                  <ErrorMessage
-                    name="product_name"
-                    component="p"
-                    className="mb-3 text-red-500 text-center"
-                  />
+                  
                   <Field
                     as={TextField}
                     label="Size"
@@ -249,21 +241,35 @@ export default function BasicModal() {
                     component="p"
                     className="mb-3 text-red-500 text-center"
                   />
-                  <Field
+                </div>
+                
+              </div>
+              <Field
                     as={TextField}
-                    label="Discription"
+                    label="Product name"
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                     type="text"
-                    name="description"
+                    name="product_name"
                     className=" w-[100%]  mb-3 outline-none py-0"
+                  />
+                  <ErrorMessage
+                    name="product_name"
+                    component="p"
+                    className="mb-3 text-red-500 text-center"
+                  />
+              <Field
+                    as={TextField}
+                    label="Discription"
+                    sx={{ "& textarea": { color: "#00000", fontSize: "20px" , length: "160px" } }}
+                    type="text"
+                    name="description"
+                    className=" w-[100%] h-[60px]  mb-3 outline-none py-0"
                   />
                   <ErrorMessage
                     name="description"
                     component="p"
                     className="mb-3 text-red-500 text-center"
                   />
-                </div>
-              </div>
               <Button variant="contained" type="submit" className="w-full py-3">
                 add
               </Button>
