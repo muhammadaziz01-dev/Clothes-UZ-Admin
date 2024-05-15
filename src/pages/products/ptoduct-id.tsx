@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
-import EditIcon from '@mui/icons-material/Edit';
+import { ToastContainer } from "react-toastify";
 
+import {MediaModaladd , ProductModalEdit} from "@modals"
 import request from "../../service/config";
-import useProductStore from "@store-product";
+import useProductStore from "@store-product"; 
 import "./style.scss"
 function index() {
   const { getIdProduct , deleteProduct } = useProductStore();
@@ -15,6 +16,7 @@ function index() {
   const [product, setProduct]: [any, any] = useState({});
   const [img, setImg] = useState("");
 
+  const dataEdit = {...product , product_id:id}
   // product get <----------------------
   const respons = async () => {
     setLoader(true);
@@ -30,6 +32,8 @@ function index() {
   };
   //=-=-==-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
+
+  // get image <--------------------
   const getImg = async (id: string | undefined) => {
     try {
       const response: any = await request.get(`/media/${id}`);
@@ -40,6 +44,12 @@ function index() {
       console.log(err);
     }
   };
+  //=-=-==-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+  // delete product <--------------------
+  
+  //=-=--=-=-=--=-=-=-=-=-=-=-=-=-=-=-=-=-=--=-
 
   useEffect(() => {
     getImg(id);
@@ -50,6 +60,7 @@ function index() {
 
   return (
     <>
+    <ToastContainer/>
       {loader ? (
         <div className=" w-full h-[90vh] flex   items-center justify-center "> <div className="loader"></div></div>
       ) : (
@@ -98,8 +109,8 @@ function index() {
                 deleteProduct(id)
                 navigation("/home/products")
                 }}><DeleteIcon/></button>
-              <button className=' text-gray-500' ><EditIcon/></button>
-
+              <MediaModaladd dataId={id}/>
+              <ProductModalEdit dataEdit={dataEdit}  />
             </div>
           </div>
         </div>

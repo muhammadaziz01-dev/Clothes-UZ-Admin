@@ -1,6 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
+import EditIcon from '@mui/icons-material/Edit';
 import { Field, Formik, Form, ErrorMessage } from "formik";
 import {
   Button,
@@ -27,8 +28,10 @@ const style = {
   p: 4,
 };
 
-export default function BasicModal() {
-  const { postProduct } = useProductStore();
+
+
+export default function BasicModal({dataEdit}:any) {
+  const { updateProduct } = useProductStore();
   const { data, getData } = useCategoryStore();
 
   const [open, setOpen] = React.useState(false);
@@ -36,18 +39,18 @@ export default function BasicModal() {
   const handleClose = () => setOpen(false);
 
   const initialValues: any = {
-    age_max: "",
-    age_min: "",
-    category_id: "",
-    color: "",
-    cost: "",
-    count: "",
-    discount: "",
-    for_gender: "",
-    made_in: "",
-    product_name: "",
-    size: "",
-    description: "",
+    age_max: dataEdit?.age_max || "",
+    age_min: dataEdit?.age_min || "",
+    category_id: dataEdit?.category_id || "",
+    color: dataEdit?.color || "",
+    cost: dataEdit?.cost || "",
+    count: dataEdit?.count || "",
+    discount: dataEdit?.discount || "",
+    for_gender: dataEdit?.for_gender || "",
+    made_in: dataEdit?.mede_in || "",
+    product_name: dataEdit?.product_name || "",
+    size: dataEdit?.size || "",
+    description: dataEdit?.description || "",
 
   };
 
@@ -61,8 +64,9 @@ export default function BasicModal() {
   }, []);
 
   const handleSubmit = async (values: any) => {
-    console.log(values);
-    const status = await postProduct(values);
+    // console.log(values);
+    const editaData = {...dataEdit , ...values}
+    const status = await updateProduct(editaData);
     if (status === 201) {
       handleClose();
     } else {
@@ -74,9 +78,9 @@ export default function BasicModal() {
     <div>
       <button
         onClick={handleOpen}
-        className="py-2 px-6 text-white font-semibold bg-[#2389DA] hover:bg-blue-800 active:bg-[#2389DA] duration-200 rounded-lg"
+        className=" text-slate-500"
       >
-        Add a product
+       <EditIcon/>
       </button>
       <Modal
         open={open}
