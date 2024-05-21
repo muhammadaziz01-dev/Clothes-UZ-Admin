@@ -96,7 +96,7 @@ export default function BasicModal({dataEdit}:any) {
           >
             <Form className="max-w-[700px] w-full flex flex-col gap-[12px]">
               <h1 className="text-center mb-2 text-[26px] font-bold">
-                add a product
+              product change
               </h1>
               <div className="flex gap-3 w-full">
                 <div className="flex flex-col gap-3">
@@ -272,7 +272,7 @@ export default function BasicModal({dataEdit}:any) {
                     className="mb-3 text-red-500 text-center"
                   />
               <Button variant="contained" type="submit" className="w-full py-3">
-                add
+              change
               </Button>
             </Form>
           </Formik>
