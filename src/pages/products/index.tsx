@@ -2,27 +2,48 @@ import { useEffect, useState } from "react";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer } from "react-toastify";
-import ArrowLeftIcon from "@mui/icons-material/ArrowLeft";
-import ArrowRightIcon from "@mui/icons-material/ArrowRight";
 
 import {ProductModalAdd} from "@modals"
-import { Table } from "@ui";
+import { Table , GlobalPogination } from "@ui";
 import  useProductStore from "@store-product"
 import "./style.scss";
 
 function index() {
 
-  const [countPage , setCountPage] = useState(1);
-  const [countLimit] = useState(8);
   const {  data, isLoader, getProduct, deleteProduct , totlCount} = useProductStore();
   const [change, setChange] = useState("")
+  console.log(change);
+  
+  const [parms , setParams] =useState({ page:1, limit:8 , name: change})
+    
+  const totleCuont2 = Math.ceil(totlCount / parms?.limit)
 
-  const allCount = Math.ceil(totlCount/ countLimit)
-  // console.log(allCount);
-
+  // useEfects function <--------------------
   useEffect(() => {
-    getProduct({ page: countPage, limit: countLimit , name:change });
-  }, [countPage, change]);
+    getProduct(parms);
+  }, [parms, change]);
+  
+  useEffect(()=>{
+    const params = new URLSearchParams(location.search);
+    const page = params.get("page");
+    const pageNuber = page ? parseInt(page): 1;
+    setParams(preParams=>({
+       ...preParams,
+        page:pageNuber
+    }));
+    
+},[location.search]);
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+//--- pagination tett mui <----
+const changePage = (value:number)=>{
+  setParams(preParams=>({
+      ...preParams,
+      page:value
+  }));
+}
+//=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-
 
 
   const theder = [
@@ -52,7 +73,13 @@ function index() {
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search"
               inputProps={{ "aria-label": "serch google maps" }}
-              onChange={(e)=>setChange(e.target.value)}
+              onChange={(e)=>{
+                setChange(e.target.value)
+                setParams(preParams=>({
+                 ...preParams,
+                  name:e.target.value
+                }))
+              }}
             />
             <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />
@@ -67,27 +94,7 @@ function index() {
       <Table heders={theder}  body={data} skelatonLoader={isLoader} deletIdData={deleteProduct}/> 
 
      
-      <div className="flex items-center justify-end gap-3">
-        <button
-          onClick={() => {
-            setCountPage(countPage - 1);
-          }}
-          disabled={countPage == 1}
-          className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm duration-200 cursor-pointer "
-        >
-          <ArrowLeftIcon />
-        </button>
-        <span className="text-[20px] text-center">{countPage}</span>
-        <button
-          onClick={() => {
-            setCountPage(countPage + 1);
-          }}
-          disabled={countPage == allCount}
-          className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm duration-200 cursor-pointer "
-        >
-          <ArrowRightIcon />
-        </button>
-      </div>
+      <GlobalPogination totleCuont={totleCuont2} page={parms.page} setParams={changePage}/>
     </>
   );
 }

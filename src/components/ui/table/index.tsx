@@ -12,7 +12,7 @@ import {
   Skeleton,
 } from "@mui/material";
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate , useSearchParams } from 'react-router-dom';
 
 import {Props} from "@globol-interface";
 import {CategorModalEdit ,WorkerModalEdit , MediaModaladd} from "@modals";
@@ -24,6 +24,9 @@ import {CategorModalEdit ,WorkerModalEdit , MediaModaladd} from "@modals";
 function index({ heders, body , skelatonLoader , deletIdData  }:Props) {
 
   const navigate = useNavigate();
+  const [searchPaams] = useSearchParams();
+  const page = Number(searchPaams.get("page")) || 1;
+  const limit = Number(searchPaams.get("limit")) || 8;
 
 
   return (
@@ -80,7 +83,7 @@ function index({ heders, body , skelatonLoader , deletIdData  }:Props) {
                             <button onClick={()=>{navigate(`/home/products/${body?.product_id}`)}}  className=' text-gray-500'><VisibilityIcon/></button>
                             </div>
                             : heder.value == "id" ? <input type="checkbox" onChange={()=>{}} />
-                            : heder.value == "t/r" ? <p>{index + 1}</p>
+                            : heder.value == "t/r" ? <p>{page * limit -(limit - 1) +index }</p>
                             : (body[heder.value])
                           }</TableCell>
                         })

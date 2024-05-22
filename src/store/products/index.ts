@@ -29,7 +29,8 @@ const useProductStore = create <StoreProduct> ((set)=>({
            const respons = await product.post(data)
            console.log(respons)
            if(respons.status === 201){
-               set((state)=>({data:[...state.data, {...data, product_id: respons?.data?.product_id}]})) 
+               set((state)=>({data: state.data.length < 8 ?[...state.data, {...data, product_id: respons?.data?.product_id}]: [...state.data]}))
+               set((state)=>({totlCount: state.totlCount += 1})) 
                toast.success("success full")
                return respons?.status
            }
@@ -43,7 +44,8 @@ const useProductStore = create <StoreProduct> ((set)=>({
            const respons = await product.delete(id)
         //    console.log(respons)
            if(respons.status === 200){
-               set((state)=>({data: state.data.filter((el:any)=>el.product_id !== id)})) 
+               set((state)=>({data: state.data.filter((el:any)=>el.product_id !== id)}))
+               set((state)=>({totlCount: state.totlCount -= 1}))  
                toast.success("Deleted successfully")
            }
         }catch(error:any){

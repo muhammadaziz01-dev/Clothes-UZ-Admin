@@ -1,26 +1,44 @@
 import { useEffect, useState } from "react";
-// import { IconButton, InputBase, Paper } from "@mui/material";
-// import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer } from "react-toastify";
-import ArrowLeftIcon from '@mui/icons-material/ArrowLeft';
-import ArrowRightIcon from '@mui/icons-material/ArrowRight';
 
 import useWorkerStore from "@store-worker";
-import { Table } from "@ui";
+import { Table , GlobalPogination} from "@ui";
 import { WorkerModalAdd } from "@modals";
 import "./style.scss";
 
-function index() {
-  const [countPage , setCountPage] = useState(1);
-  const [countLimit] = useState(5);
+function index() {;
   const { isLoader, data, getData, deleteData , totlCount} = useWorkerStore();
+  const [parms , setParams] =useState({ page:1, limit:8 })
+    
+  const totleCuont2 = Math.ceil(totlCount / parms?.limit) 
 
-  const allCount = Math.ceil(totlCount/ countLimit)
-  // console.log(allCount);
 
+  // useEffects function <--------------------------------
   useEffect(() => {
-    getData({ page: countPage, limit: countLimit });
-  }, [countPage]);
+    getData(parms);
+  }, [parms]);
+
+  useEffect(()=>{
+    const params = new URLSearchParams(location.search);
+    const page = params.get("page");
+    const pageNuber = page ? parseInt(page): 1;
+    setParams(preParams=>({
+       ...preParams,
+        page:pageNuber
+    }));
+    
+},[location.search]);
+//=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+
+
+//--- pagination tett mui <----
+const changePage = (value:number)=>{
+  setParams(preParams=>({
+      ...preParams,
+      page:value
+  }));
+}
+//=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-
 
   const theder = [
     { title: "", value: "id" },
@@ -66,11 +84,8 @@ function index() {
         skelatonLoader={isLoader}
         deletIdData={deleteData}
       />
-      <div className="flex items-center justify-end gap-3">
-      <button onClick={()=>{setCountPage(countPage - 1)}} disabled={countPage == 1} className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm duration-200 cursor-pointer "><ArrowLeftIcon/></button>
-      <span className="text-[20px] text-center">{countPage}</span>
-      <button onClick={()=>{setCountPage(countPage + 1)}} disabled={countPage == allCount}  className="py-1 px-1 border rounded-lg hover:shadow-md active:shadow-sm duration-200 cursor-pointer "><ArrowRightIcon/></button>
-    </div>
+      
+      <GlobalPogination totleCuont={totleCuont2} page={parms.page} setParams={changePage}/>
     </>
   );
 }

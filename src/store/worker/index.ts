@@ -29,7 +29,8 @@ const useWorkerStore = create <StoreWorker> ((set)=>({
            const respons = await worker.post(data)
            console.log(respons)
            if(respons.status === 201){
-               set((state)=>({data:[...state.data, {...data, id: respons?.data?.user_id}]})) 
+               set((state)=>({data: state.data.length < 8 ? [...state.data, {...data, id: respons?.data?.user_id}] :[...state.data]})) 
+               set((state)=>({totlCount: state.totlCount += 1}))
                toast.success("success full")
                return respons?.status
            }
@@ -44,6 +45,7 @@ const useWorkerStore = create <StoreWorker> ((set)=>({
         //    console.log(respons)
            if(respons.status === 200){
                set((state)=>({data: state.data.filter((el:any)=>el.id !== id)})) 
+               set((state)=>({totlCount: state.totlCount -= 1}))
                toast.success("Deleted successfully")
            }
         }catch(error:any){
