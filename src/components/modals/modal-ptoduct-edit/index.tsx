@@ -58,9 +58,9 @@ export default function BasicModal({dataEdit}:any) {
 
   useEffect(() => {
     getData({ page: 1, limit: 100 });
-    setTimeout(() => {
-      console.log(data);
-    }, 1000);
+    // setTimeout(() => {
+    //   console.log(data);
+    // }, 1000);
   }, []);
 
   const handleSubmit = async (values: any) => {

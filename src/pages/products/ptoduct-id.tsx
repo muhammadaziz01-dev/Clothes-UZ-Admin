@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import DeleteIcon from '@mui/icons-material/Delete';
 import { ToastContainer } from "react-toastify";
+import ImageGallery from "react-image-gallery";
 
 import {MediaModaladd , ProductModalEdit} from "@modals"
 import request from "../../service/config";
@@ -14,7 +15,8 @@ function index() {
 
   const [loader, setLoader] = useState(false);
   const [product, setProduct]: [any, any] = useState({});
-  const [img, setImg] = useState("");
+  const [imgList, setImgList] = useState([])
+
 
   const dataEdit = {...product , product_id:id}
   // product get <----------------------
@@ -23,7 +25,7 @@ function index() {
     try {
       const data = await getIdProduct(id);
       setProduct(data);
-      console.log(data);
+      // console.log(data);
     } catch (err) {
       console.log(err);
     }
@@ -37,9 +39,20 @@ function index() {
   const getImg = async (id: string | undefined) => {
     try {
       const response: any = await request.get(`/media/${id}`);
-      setImg(
-        response?.data?.images[response?.data?.images.length - 1]?.image_url
-      );
+      const imgs = response?.data?.images ? response?.data?.images : []
+      const data =  imgs.map((el:any)=>{
+          return el.image_url
+      })
+      const  imgsDataProps = data?.map((el:any)=>{
+        return {
+          original: el?el:"",
+          thumbnail: el?el:""
+        }
+      })
+
+      setImgList(imgsDataProps)
+      
+      
     } catch (err) {
       console.log(err);
     }
@@ -51,6 +64,7 @@ function index() {
     getImg(id);
     respons();
   }, []);
+console.log(imgList);
 
   
 
@@ -63,8 +77,10 @@ function index() {
         <div className=" w-full h-[80vh] flex items-center justify-center">
           <div className="flex items-center justify-center gap-[60px] ">
 
-            <div className="w-[400px] h-full ">
-              <img className="w-full h-ful" src={img} alt={product?.description} />
+            <div className="h-full ">
+              
+               <ImageGallery items={imgList} additionalClass="w-[600px]" /> 
+              
             </div>
             <div>
               <h2 className="text-[24px]  font-semibold text-slate-900 text-center py-1">
@@ -75,7 +91,7 @@ function index() {
                   Made in: <span className=" test-[22px] font-semibold pb-1 border-b">{product?.made_in}</span>
                 </p>
                 <p className="text-[20px] font-medium text-slate-600">
-                  Color: <span className={product?.color ? ` bg-[${product?.color}] px-3 ml-3 rounded-[50%] `: " px-3 ml-3 rounded-[50%]  "}></span>
+                  Color: <span className={product?.color ? ` bg-[${product?.color}] px-3 ml-3 rounded-[50%] `: " px-3 ml-3 rounded-[50%]  "}></span> <span className="ml-3 border-b pb-1 text-[20px] font-semibold">{product?.color}</span>
                 </p>
                 <p className="text-[20px] font-medium text-slate-600">
                   Size: <span className=" ml-3 border-b pb-1 text-[20px] font-semibold "> {product.size} </span>
@@ -106,6 +122,7 @@ function index() {
             </div> 
             </div>
           </div>
+          
         </div>
       )}
     </>
