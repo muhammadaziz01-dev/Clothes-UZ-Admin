@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
-import { IconButton, InputBase, Paper } from "@mui/material";
-import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 import {ProductModalAdd} from "@modals"
-import { Table , GlobalPogination } from "@ui";
+import { Table , GlobalPogination , GlobalSearch } from "@ui";
 import  useProductStore from "@store-product"
 import "./style.scss";
 
@@ -79,26 +77,7 @@ const hendalChange = (e:any)=>{
      <ToastContainer/>
       <div className="flex items-center justify-between py-3">
         <div className="w-96">
-          <Paper
-            component="form"
-            sx={{
-              p: "2px 4px",
-              width: 400,
-              alignItems: "center",
-              display: "flex",
-            }}
-          >
-            <InputBase
-              sx={{ ml: 1, flex: 1 }}
-              placeholder="Search"
-              inputProps={{ "aria-label": "serch google maps" }}
-              onChange={hendalChange}
-              value={change}
-            />
-            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-              <SearchIcon />
-            </IconButton>
-          </Paper>
+          < GlobalSearch search={change}  hendelChange={hendalChange}/>
         </div>
         <div className="flex items-center gap-2">
           <ProductModalAdd/>
