@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { IconButton, InputBase, Paper } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import {ProductModalAdd} from "@modals"
 import { Table , GlobalPogination } from "@ui";
@@ -10,10 +11,11 @@ import "./style.scss";
 
 function index() {
 
+  const navigate = useNavigate()
   const {  data, isLoader, getProduct, deleteProduct , totlCount} = useProductStore();
   const [change, setChange] = useState("")
   console.log(change);
-  
+  1
   const [parms , setParams] =useState({ page:1, limit:8 , name: change})
     
   const totleCuont2 = Math.ceil(totlCount / parms?.limit)
@@ -26,11 +28,15 @@ function index() {
   useEffect(()=>{
     const params = new URLSearchParams(location.search);
     const page = params.get("page");
+    const search = params.get("search");
+    const searchString =  search ? search  : ""
     const pageNuber = page ? parseInt(page): 1;
     setParams(preParams=>({
        ...preParams,
-        page:pageNuber
+        page:pageNuber,
+        name:searchString
     }));
+    setChange(searchString)
     
 },[location.search]);
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
@@ -44,6 +50,19 @@ const changePage = (value:number)=>{
   }));
 }
 //=-=-=-=-=-=-=-=-=-=-=-=--=--=-=-
+
+const hendalChange = (e:any)=>{
+  const search = e.target.value;
+  setChange(search)
+  setParams(preParams=>({
+                 ...preParams,
+                 search
+  }))
+  const searchParams = new URLSearchParams(location.search);
+        searchParams.set("search", search)
+        navigate (`?${searchParams}`)
+
+}
 
 
   const theder = [
@@ -73,13 +92,8 @@ const changePage = (value:number)=>{
               sx={{ ml: 1, flex: 1 }}
               placeholder="Search"
               inputProps={{ "aria-label": "serch google maps" }}
-              onChange={(e)=>{
-                setChange(e.target.value)
-                setParams(preParams=>({
-                 ...preParams,
-                  name:e.target.value
-                }))
-              }}
+              onChange={hendalChange}
+              value={change}
             />
             <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
               <SearchIcon />
