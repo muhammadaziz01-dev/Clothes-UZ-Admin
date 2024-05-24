@@ -37,7 +37,8 @@ const index = () => {
         const respons = await auth.signin(values);
         console.log(respons);
         if(respons.status ===200){
-            setCookies("token",respons.data.access_token );
+            setCookies("access_token",respons?.data?.access_token );
+            setCookies("refresh_token" , respons?.data?.refresh_token )
             toast.success("successfully logged in");
             setTimeout(()=>{navigate("/home");},1000)
 
