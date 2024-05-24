@@ -54,12 +54,12 @@ export default function ResponsiveDrawer(props: Props) {
 
   // my code ....------------------------------------------------
   const {pathname} = useLocation();
-  // const navigate = useNavigate()
-  // useEffect(() => {
-  //   if(!localStorage.getItem("acses-token")){
-  //      navigate("/signin")
-  //   }
-  // }, []);
+//   const navigate = useNavigate()
+//   React.useEffect(() => {
+//     if(getCookies("acses_token")){
+//         navigate("/home");
+//     }
+// }, [])
   // ....------------------------------------------------
   
 

@@ -28,7 +28,8 @@ export default function AccountMenu() {
 const navigate = useNavigate()
 
 const handleSignin = ()=>{
-    removeCookies("token");
+    removeCookies("access_token");
+    removeCookies("refresh_token")
     navigate("/")
     // window.location.reload();
 }

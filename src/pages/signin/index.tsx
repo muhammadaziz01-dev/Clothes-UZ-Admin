@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import { Button, IconButton, InputAdornment, TextField } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useState } from "react";
+import { useState , useEffect} from "react";
 
 import {auth} from "../../service/auth"
-import {setCookies} from "@coocse"
+import {setCookies , getCookies} from "@coocse"
 import {schemaLogin} from "@validations"
 
 
@@ -19,6 +19,13 @@ const index = () => {
    const [showPassword, setShowPassword] = useState(false);
 
 
+
+   useEffect(() => {
+    if(getCookies("access_token")){
+        navigate("/home");
+    }
+}, [])
+
     interface initialValues {
         email: string;
         password: string;
@@ -27,8 +34,6 @@ const index = () => {
         email: "xasannosirov094@gmail.com" || "",
         password: "Sehtols@01" || "",
     };
-
-
    
 
 

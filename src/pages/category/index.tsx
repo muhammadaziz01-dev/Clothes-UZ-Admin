@@ -1,19 +1,31 @@
 import { useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 import useCategoryStore from "@store-categors"
 import { Table , GlobalPogination} from "@ui"
 import {CategorMadalAdd} from "@modals"
+import {getCookies} from "@coocse"
 import "./style.scss"
 
 function index() {
   const {isLoader , data , getData , deleteData ,totlCount } = useCategoryStore()
   
-
+  const navigate = useNavigate()
   const [parms , setParams] =useState({ page:1, limit:8 })
     
     const totleCuont2 = Math.ceil(totlCount / parms?.limit) 
   
+
+    // Cantrol User token <-------------------------------------
+  useEffect(() => {
+    if (getCookies("access_token")) {
+      navigate("/home");
+    } else {
+      navigate("/");
+    }
+  }, []);
+  //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 
 // useEffects function <------------------------------
   useEffect(()=>{
