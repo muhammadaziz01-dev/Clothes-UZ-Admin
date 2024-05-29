@@ -28,7 +28,7 @@ export default function BasicModal({ dataId }: any) {
   const postMedia = async (data: any) => {
     try {
       const token = getCookies("access_token");
-      const url = `http://store.go-clothes.uz:5555/v1/media/upload-photo?id=${data.id}`;
+      const url = `https://store.go-clothes.uz/v1/media/upload-photo?id=${data.id}`;
       const formData = new FormData();
       formData.append("file", data.upload_photo);
 

@@ -18,7 +18,7 @@ async function  refreshAccsesToken (){
    }else{
        console.log("get token refresh");
        
-       const response:any = await axios.get(`http://store.go-clothes.uz:5555/v1/token/${stored_refresh_token}`)
+       const response:any = await axios.get(`https://store.go-clothes.uz/v1/token/${stored_refresh_token}`)
        console.log(response + " refresh data");
        const {access_token , refresh_token} = response.data;
        console.log(access_token + " acses token 401 kegin");
