@@ -127,7 +127,7 @@ export default function BasicModal() {
                     name="category_id"
                     className="w-full  border py-5 rounded-md px-1 "
                   >
-                    {data.map((item) => (
+                    {data?.map((item) => (
                       <option key={item?.category_id} value={item?.category_id}>
                         {item?.category_name}
                       </option>

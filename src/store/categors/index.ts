@@ -20,6 +20,7 @@ const useCategoryStore = create <StoreCategory> ((set)=>({
            set({isLoader: false})
        }catch(error){
         console.log(error)
+        set({isLoader: false})
        }
        
     },

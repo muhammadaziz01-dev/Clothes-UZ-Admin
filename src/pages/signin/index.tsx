@@ -41,9 +41,9 @@ const index = () => {
     try{
         const respons = await auth.signin(values);
         console.log(respons);
-        if(respons.status ===200){
-            setCookies("access_token",respons?.data?.access_token );
-            setCookies("refresh_token" , respons?.data?.refresh_token )
+        if(respons.status === 200){
+            setCookies("access_token", respons?.data?.access_token );
+            setCookies("refresh_token" , respons?.data?.refresh_token ); //refresh_token  
             toast.success("successfully logged in");
             setTimeout(()=>{navigate("/home");},1000)
 
@@ -57,7 +57,7 @@ const index = () => {
     
      
     <div className="login-wrp w-full h-[100vh] flex items-center justify-center">
-        <div className=" py-10 px-20 rounded-tl-[30px] rounded-br-3xl shadow-[30px] bg-[rgba(250,250,250,0.35)]">
+        <div className="max-w-[710px] w-full py-10 px-20 rounded-tl-[30px] rounded-br-3xl shadow-[30px] bg-[rgba(250,250,250,0.85)]">
           <h1 className="text-center mb-5 text-[56px] font-bold">
             Log in
           </h1>
@@ -65,8 +65,9 @@ const index = () => {
             initialValues={initialValues}
             validationSchema={schemaLogin}
             onSubmit={handelSubmit}
+            
           >
-            <Form className=" w-[550px]   flex flex-col gap-[15px]">
+            <Form className=" w-full   flex flex-col gap-[15px]">
               <Field
                 as={TextField}
                 label="Email"

@@ -21,6 +21,7 @@ const useWorkerStore = create <StoreWorker> ((set)=>({
        }catch(error:any){
         console.log(error)
         toast.error("Error : " + error?.message);
+        set ({isLoader: false});    
        }
        
     },

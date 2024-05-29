@@ -75,7 +75,7 @@ console.log(imgList);
         <div className=" w-full h-[90vh] flex   items-center justify-center "> <div className="loader"></div></div>
       ) : (
         <div className=" w-full h-[80vh] flex items-center justify-center">
-          <div className="flex items-center justify-center gap-[60px] ">
+          <div className="flex  items-center justify-center gap-[60px] ">
 
             <div className="h-full ">
               

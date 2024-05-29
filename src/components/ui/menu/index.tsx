@@ -29,7 +29,7 @@ const navigate = useNavigate()
 
 const handleSignin = ()=>{
     removeCookies("access_token");
-    removeCookies("refresh_token")
+    removeCookies("refresh_token");
     navigate("/")
     // window.location.reload();
 }

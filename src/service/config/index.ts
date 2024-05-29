@@ -7,21 +7,31 @@ const request = axios.create({
 
 
 async function  refreshAccsesToken (){
+    console.log("start refresh token function");
     try{
-   const stored_refresh_token= getCookies("refresh_token")
+   const stored_refresh_token= getCookies("refresh_token"); // refresh_token
+    // console.log(stored_refresh_token);
+   
    
    if(!stored_refresh_token){
        throw new Error ("Refresh token not found in cookie ") 
    }else{
+       console.log("get token refresh");
+       
        const response:any = await axios.get(`http://store.go-clothes.uz:5555/v1/token/${stored_refresh_token}`)
+       console.log(response + " refresh data");
        const {access_token , refresh_token} = response.data;
-       console.log(access_token);
-       setCookies("acses_token", access_token);
+       console.log(access_token + " acses token 401 kegin");
+       console.log(refresh_token + " refresh token 401 kegin");
+       setCookies("access_token", access_token);
        setCookies("refresh_token", refresh_token);
        return access_token;
    }
+     console.log("tey blok end");
+     
     }catch(error){
       console.log(error);
+      console.log("catch blok end");
       
     }
 }
