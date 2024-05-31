@@ -62,7 +62,17 @@ export default function BasicModal() {
 
   const handleSubmit = async (values: any) => {
     console.log(values);
-    const status = await postProduct(values);
+
+    const newSize = values.size.split(/\s+/).filter((soz:any) => soz !== '');
+    const newColor = values.color.split(/\s+/).filter((soz:any) => soz !== '');
+
+    console.log(newColor);
+    console.log(newSize);
+
+    const newValue = {...values, color: newColor , size: newSize}
+    
+
+    const status = await postProduct(newValue);
     if (status === 201) {
       handleClose();
     } else {
@@ -229,7 +239,7 @@ export default function BasicModal() {
                     as={TextField}
                     label="Size"
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                    type="number"
+                    type="text"
                     name="size"
                     className=" w-[100%]  mb-3 outline-none py-0"
                   />

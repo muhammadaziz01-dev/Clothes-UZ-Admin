@@ -64,7 +64,9 @@ function index() {
     getImg(id);
     respons();
   }, []);
-console.log(imgList);
+
+  console.log(product.color);
+  
 
   
 
@@ -79,7 +81,11 @@ console.log(imgList);
 
             <div className="h-full ">
               
-               <ImageGallery items={imgList} additionalClass="w-[600px]" /> 
+               <ImageGallery items={imgList} additionalClass="w-[600px]" autoPlay={false}
+                infinite={true}
+                thumbnailPosition={"left"}
+                showPlayButton={false}
+                showFullscreenButton={true} /> 
               
             </div>
             <div>
@@ -90,12 +96,16 @@ console.log(imgList);
                 <p className="text-[20px] text-slate-600">
                   Made in: <span className=" test-[22px] font-semibold pb-1 border-b">{product?.made_in}</span>
                 </p>
-                <p className="text-[20px] font-medium text-slate-600">
-                  Color: <span className={product?.color ? ` bg-[${product?.color}] px-3 ml-3 rounded-[50%] `: " px-3 ml-3 rounded-[50%]  "}></span> <span className="ml-3 border-b pb-1 text-[20px] font-semibold">{product?.color}</span>
-                </p>
-                <p className="text-[20px] font-medium text-slate-600">
-                  Size: <span className=" ml-3 border-b pb-1 text-[20px] font-semibold "> {product.size} </span>
-                </p>
+                <div className="text-[20px] font-medium text-slate-600 flex items-center ">
+                  Color:  <p className="ml-3 border-b flex items-center gap-3 pb-1 text-[20px] font-semibold">{product?.color?.map((el:any)=>{
+                    return <span  key={el}>{el} ,</span>
+                  })}</p>
+                </div>
+                <div className="text-[20px] font-medium text-slate-600 flex items-center">
+                  Size: <p className="ml-3 border-b flex items-center gap-3 pb-1 text-[20px] font-semibold">{product?.size?.map((el:any)=>{
+                    return <span  key={el}>{el} ,</span>
+                  })}</p>
+                </div>
                 <p className="text-[20px] font-medium text-slate-600">
                   Count:<span className=" ml-3 border-b pb-1 text-[20px] font-semibold ">  {product?.count} </span>
                 </p>

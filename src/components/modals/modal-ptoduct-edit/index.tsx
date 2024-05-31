@@ -42,14 +42,14 @@ export default function BasicModal({dataEdit}:any) {
     age_max: dataEdit?.age_max || "",
     age_min: dataEdit?.age_min || "",
     category_id: dataEdit?.category_id || "",
-    color: dataEdit?.color || "",
+    color:   "",
     cost: dataEdit?.cost || "",
     count: dataEdit?.count || "",
     discount: dataEdit?.discount || "",
     for_gender: dataEdit?.for_gender || "",
     made_in: dataEdit?.mede_in || "",
     product_name: dataEdit?.product_name || "",
-    size: dataEdit?.size || "",
+    size:  "",
     description: dataEdit?.description || "",
 
   };
@@ -64,8 +64,13 @@ export default function BasicModal({dataEdit}:any) {
   }, []);
 
   const handleSubmit = async (values: any) => {
+    const newSize = values.size.split(/\s+/).filter((soz:any) => soz !== '');
+    const newColor = values.color.split(/\s+/).filter((soz:any) => soz !== '');
     // console.log(values);
-    const editaData = {...dataEdit , ...values}
+    const editaData = {...dataEdit , ...values , size: newSize, color: newColor}
+
+    // console.log(editaData);
+    
     const status = await updateProduct(editaData);
     if (status === 201) {
       handleClose();
@@ -233,7 +238,7 @@ export default function BasicModal({dataEdit}:any) {
                     as={TextField}
                     label="Size"
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
-                    type="number"
+                    type="text"
                     name="size"
                     className=" w-[100%]  mb-3 outline-none py-0"
                   />
