@@ -219,12 +219,12 @@ export default function BasicModal() {
                   >
                     <div className="flex items-center justify-between">
                       <FormControlLabel
-                        value="male"
+                        value="Male"
                         control={<Radio />}
                         label="Male"
                       />
                       <FormControlLabel
-                        value="female"
+                        value="Female"
                         control={<Radio />}
                         label="Female"
                       />
@@ -241,7 +241,7 @@ export default function BasicModal() {
                     sx={{ "& input": { color: "#00000", fontSize: "20px" } }}
                     type="text"
                     name="size"
-                    className=" w-[100%]  mb-3 outline-none py-0"
+                    className=" w-[100%]  mb-3 outline-none py-0 "
                   />
                   <ErrorMessage
                     name="size"

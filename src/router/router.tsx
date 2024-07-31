@@ -8,7 +8,6 @@ import {
 import App from "../App";
 import {SignIn, SignUP, Arror,  Category , Products ,Users , ProductId } from "@pages"
 import {HomeLayout} from "@layut"
-// import {Asosiy , Buyurtmalar , SMSMarketing , Mijozlar , Xizmatlar ,Sozlamalar} from "@pages"
 
 const index = ()=>{
     const router = createBrowserRouter(

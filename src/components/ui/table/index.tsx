@@ -86,6 +86,9 @@ function index({ heders, body , skelatonLoader , deletIdData  }:Props) {
                             : heder.value == "size" ?  <div className='flex items-center'>{body?.size?.map((el:any)=>{
                               return <p className='pl-2' key={el}>{el}</p>
                             })}</div>
+                            : heder.value == "color" ?  <div className='flex items-center'>{body?.color?.map((el:any)=>{
+                              return <p className='pl-2' key={el}>{el}</p>
+                            })}</div>
                             : heder.value == "t/r" ? <p>{page * limit -(limit - 1) +index }</p>
                             : (body[heder.value])
                           }</TableCell>

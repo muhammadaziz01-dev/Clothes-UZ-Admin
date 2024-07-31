@@ -29,12 +29,12 @@ function index() {
     const search = params.get("search");
     const searchString =  search ? search  : ""
     const pageNuber = page ? parseInt(page): 1;
+    setChange(searchString)
     setParams(preParams=>({
        ...preParams,
         page:pageNuber,
         name:searchString
     }));
-    setChange(searchString)
     
 },[location.search]);
 //=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
